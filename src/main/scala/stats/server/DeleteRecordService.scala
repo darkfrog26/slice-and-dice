@@ -3,11 +3,11 @@ import cats.effect.IO
 import spice.http.{HttpExchange, HttpStatus}
 import stats.controller.EmployeeController
 
-object DeleteRecordService extends Service[String, Unit] {
-  override protected def validated: Boolean = true
+object DeleteRecordService extends Service[EmployeeName, Unit] {
+  override protected def validated: Boolean = false
 
   override def call(exchange: HttpExchange,
-                    employeeName: String): IO[Either[(ServerResponse[Unit], HttpStatus), Unit]] = {
-    EmployeeController.deleteByName(employeeName).map(_ => Right(()))
+                    employeeName: EmployeeName): IO[Either[(ServerResponse[Unit], HttpStatus), Unit]] = {
+    EmployeeController.deleteByName(employeeName.value).map(_ => Right(()))
   }
 }

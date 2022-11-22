@@ -9,16 +9,16 @@ http://localhost:8080/user/authenticate?username=clipboard&password=clipboard
 - [X] Create Security model
   - [X] Create a dummy user
 - [X] Create preliminary web server
-- [ ] Create API
-  - [ ] Add a new record
-  - [ ] Delete a record
-  - [ ] Fetch SS for salary over the entire dataset
-  - [ ] Fetch SS for salary on_contract
-  - [ ] Fetch SS for salary for each department
-  - [ ] Fetch SS for salary for each department and sub-department
-  - [ ] Add login to get token
-  - [ ] Add token auth to each API end-point
-- [ ] Tests for each API end-point
+- [X] Create API
+  - [X] Add a new record
+  - [X] Delete a record
+  - [X] Fetch SS for salary over the entire dataset
+  - [X] Fetch SS for salary on_contract
+  - [X] Fetch SS for salary for each department
+  - [X] Fetch SS for salary for each department and sub-department
+  - [X] Add login to get token
+  - [X] Add token auth to each API end-point
+- [X] Tests for each API end-point
 - [ ] Add GitHub Action for CI
 - [ ] Create Dockerized deployment
 - [ ] Create docker-compose file to start ArangoDB and server

@@ -5,7 +5,7 @@ import spice.http.{HttpExchange, HttpStatus}
 import stats.controller.EmployeeController
 
 object DepartmentStatisticsService extends Service[StatisticsFilters, Map[String, Statistics]] {
-  override protected def validated: Boolean = false
+  override protected def validated: Boolean = true
 
   override def call(exchange: HttpExchange,
                     filters: StatisticsFilters): IO[Either[(ServerResponse[Map[String, Statistics]], HttpStatus), Map[String, Statistics]]] = {

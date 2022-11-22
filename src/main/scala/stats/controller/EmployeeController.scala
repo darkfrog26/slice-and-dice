@@ -128,10 +128,11 @@ object EmployeeController {
   }
 
   def deleteByName(name: String): IO[Unit] = {
+    scribe.info(s"Deleting where name is $name")
     val q =
       aql"""
           FOR e IN ${DB.employees}
-          FILTER e.${Employee.name} === $name
+          FILTER e.${Employee.name} == $name
           REMOVE e IN ${DB.employees}
          """
     DB.execute(q)
