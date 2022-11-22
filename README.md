@@ -1,11 +1,14 @@
 # Let's Slice & Dice
 ## Take home test for Clipboard Staff Software Engineer position
 
+http://localhost:8080/user/authenticate?username=clipboard&password=clipboard
+- Local token: 4xvnYE6dCNNWy2ZyQEQW8KvREJhhQpvO
+
 # TODO
 - [X] Create Database model
 - [X] Create Security model
   - [X] Create a dummy user
-- [ ] Create preliminary web server
+- [X] Create preliminary web server
 - [ ] Create API
   - [ ] Add a new record
   - [ ] Delete a record
@@ -16,6 +19,7 @@
   - [ ] Add login to get token
   - [ ] Add token auth to each API end-point
 - [ ] Tests for each API end-point
+- [ ] Add GitHub Action for CI
 - [ ] Create Dockerized deployment
 - [ ] Create docker-compose file to start ArangoDB and server
     - docker run --name arangodb -p 8529:8529 -d --rm -it -e ARANGO_NO_AUTH=1 arangodb/arangodb-preview:3.10-nightly

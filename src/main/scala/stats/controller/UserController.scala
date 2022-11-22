@@ -66,4 +66,14 @@ object UserController {
          """
     DB.users.query(q).first
   }
+
+  def logOut(token: String): IO[Unit] = {
+    val q =
+      aql"""
+          FOR a IN ${DB.authenticated}
+          FILTER a.${Authenticated.token} == $token
+          REMOVE a IN ${DB.authenticated}
+         """
+    DB.execute(q)
+  }
 }
