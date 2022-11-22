@@ -2,9 +2,10 @@
 ## Take home test for Clipboard Staff Software Engineer position
 
 # TODO
-- [ ] Create Database model
-- [ ] Create Security model
-  - [ ] Create a dummy user
+- [X] Create Database model
+- [X] Create Security model
+  - [X] Create a dummy user
+- [ ] Create preliminary web server
 - [ ] Create API
   - [ ] Add a new record
   - [ ] Delete a record
