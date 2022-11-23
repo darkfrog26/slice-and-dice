@@ -19,7 +19,7 @@ but take a look at the benchmarks if you're curious. It's also incredibly powerf
 - Scarango (https://github.com/outr/scarango): My choice for connecting to the database. Yes, I also wrote it, and it's
 the defacto standard Scala driver for ArangoDB. It provides a lot of infrastructure to write great code working with the
 database.
-- Fiber (https://github.com/typelevel/fabric): Though not explicitly depended on, it is used behind the scenes for JSON
+- Fabric (https://github.com/typelevel/fabric): Though not explicitly depended on, it is used behind the scenes for JSON
 parsing and formatting. Yep, I also wrote it.
 - Spice (https://github.com/outr/spice): I considered using http4s, but the past few times I've used it on teams, the
 complexity really confused the more junior developers on my team. Spice is something of a prototype web server I created
