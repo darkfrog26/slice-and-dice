@@ -1,0 +1,15 @@
+version: "3.1"
+
+services:
+  sad-db:
+    image: arangodb/arangodb-preview:3.10-nightly
+    container_name: sad-db
+    ports:
+      - "8529:8529"
+    environment:
+      - ARANGO_NO_AUTH=1
+  sad-web:
+    image: matthicks/slice-and-dice:1.0.0-SNAPSHOT
+    container_name: sad-web
+    ports:
+      - "8080:8080"

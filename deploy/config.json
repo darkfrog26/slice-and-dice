@@ -1,0 +1,10 @@
+{
+  "arangodb": {
+    "hosts": [
+      {
+        "host": "host.docker.internal",
+        "port": 8529
+      }
+    ]
+  }
+}

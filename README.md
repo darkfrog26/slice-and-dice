@@ -1,33 +1,59 @@
 # Let's Slice & Dice
 ## Take home test for Clipboard Staff Software Engineer position
+I've gone a bit overboard to create a solution to the take home test, but if I were really going to release this to the
+public, there's quite a lot of improvements I would make.
 
-http://localhost:8080/user/authenticate?username=clipboard&password=clipboard
-- Local token: 4xvnYE6dCNNWy2ZyQEQW8KvREJhhQpvO
+# Language Choice
+My language of choice is generally Scala, though I've been delving deeper into Rust recently. However, because of my
+vast knowledge of the language and custom libraries I've written, creating the solution using Scala was a clear choice.
 
-# TODO
-- [X] Create Database model
-- [X] Create Security model
-  - [X] Create a dummy user
-- [X] Create preliminary web server
-- [X] Create API
-  - [X] Add a new record
-  - [X] Delete a record
-  - [X] Fetch SS for salary over the entire dataset
-  - [X] Fetch SS for salary on_contract
-  - [X] Fetch SS for salary for each department
-  - [X] Fetch SS for salary for each department and sub-department
-  - [X] Add login to get token
-  - [X] Add token auth to each API end-point
-- [X] Tests for each API end-point
-- [ ] Add GitHub Action for CI
-- [ ] Create Dockerized deployment
-- [ ] Create docker-compose file to start ArangoDB and server
-    - docker run --name arangodb -p 8529:8529 -d --rm -it -e ARANGO_NO_AUTH=1 arangodb/arangodb-preview:3.10-nightly
-- [ ] Create bundling script (Create Docker and publish it locally)
-- [ ] Update README
-  - [ ] Explain each library dependency
-  - [ ] Explain database choice
-  - [ ] Explain how to run
-  - [ ] Add API call docs
-  - [ ] Remove TODO
-- [ ] Bundle up and release
+# Database Choice
+The test PDF suggests an in-memory database, but I chose to use ArangoDB instead because I believe it better reflects
+the kind of solution I would actually write for a production scenario, and I just really like the database.
+
+# Dependencies
+If you take a look at the build.sbt file, you'll see several third-party dependencies referenced and I'd like to take a
+moment to outline them, their purpose, and why I chose them:
+- Scribe (https://github.com/outr/scribe): The fastest logging library on the JVM. I'm a bit biased because I wrote it,
+but take a look at the benchmarks if you're curious. It's also incredibly powerful.
+- Scarango (https://github.com/outr/scarango): My choice for connecting to the database. Yes, I also wrote it, and it's
+the defacto standard Scala driver for ArangoDB. It provides a lot of infrastructure to write great code working with the
+database.
+- Fiber (https://github.com/typelevel/fabric): Though not explicitly depended on, it is used behind the scenes for JSON
+parsing and formatting. Yep, I also wrote it.
+- Spice (https://github.com/outr/spice): I considered using http4s, but the past few times I've used it on teams, the
+complexity really confused the more junior developers on my team. Spice is something of a prototype web server I created
+to simplify client / server communication. One of the things that's a bit unique about Spice is the `Restful` trait. It
+gives the API the ability to be called via POST or GET parameters for easier local testing.
+
+# Getting Started
+There are a few basic requirements to get set up:
+- SBT (https://www.scala-sbt.org): This is the Scala Build Tool used to build the code
+- Docker and Docker Compose: Since the requirements for this code assignment specifically call for this, I don't think
+additional explanation is necessary.
+
+## Building and Publishing Locally
+In order to build and publish the Docker image locally to be used in the `docker-compose.yml` file, you'll need to run
+the `publish-local.sh` script file in the root of the project.
+
+## Starting
+Starting both the web server and ArangoDB should be as easy as running `docker compose up` after you've successfully
+built and locally published the image.
+
+## Verifying
+You can connect to the local ArangoDB instance by opening http://localhost:8529 in the browser. In addition, you can
+test the authentication in the browser via: http://localhost:8080/user/authenticate?username=clipboard&password=clipboard
+
+## Endpoints
+Unfortunately, due to lack of time, I wasn't able to create an OpenAPI / Swagger implementation for this, but you can
+see the endpoints in action in the spec tests. You should also be able to see the tests successfully running in the
+GitHub Action CI.
+
+These are the exposed end-points you'll find at localhost:8080:
+- `/dataset/create`: Creates the employee entry
+- `/dataset/delete`: Deletes the employee entry by name
+- `/dataset/statistics`: Returns the summary statistics against all employees
+- `/dataset/statistics/department`: Returns the summary statistics grouped by department
+- `/dataset/statistics/subdepartment`: Returns the summary statistics grouped by department and sub-grouped by sub-department
+- `/user/authenticate`: Authenticates a user login. There is a hard-coded user `clipboard` / `clipboard` created when the database is created
+- `/user/logout`: Removes the authentication token entry from the database for a specific login token.

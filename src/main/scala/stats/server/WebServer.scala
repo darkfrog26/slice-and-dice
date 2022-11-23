@@ -5,6 +5,8 @@ import spice.http.server.dsl._
 import spice.net._
 
 object WebServer extends MutableHttpServer {
+  config.clearListeners().addHttpListener("0.0.0.0", 8080)
+
   handler(
     filters(
       path"/dataset/create" / CreateRecordService,
