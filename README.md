@@ -44,6 +44,10 @@ built and locally published the image.
 You can connect to the local ArangoDB instance by opening http://localhost:8529 in the browser. In addition, you can
 test the authentication in the browser via: http://localhost:8080/user/authenticate?username=clipboard&password=clipboard
 
+## Testing
+You can run the `test.sh` script to run the unit tests locally. However, this assumes a running instance of ArangoDB to
+test against. Notice in the spec that all points of the criteria is covered (https://github.com/darkfrog26/slice-and-dice/blob/master/src/test/scala/spec/APISpec.scala).
+
 ## Endpoints
 Unfortunately, due to lack of time, I wasn't able to create an OpenAPI / Swagger implementation for this, but you can
 see the endpoints in action in the spec tests. You should also be able to see the tests successfully running in the
