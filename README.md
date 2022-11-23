@@ -1,6 +1,7 @@
 # Let's Slice & Dice
 ## Take home test for Clipboard Staff Software Engineer position
 [![CI](https://github.com/darkfrog26/slice-and-dice/actions/workflows/ci.yml/badge.svg)](https://github.com/darkfrog26/slice-and-dice/actions/workflows/ci.yml)
+
 I've gone a bit overboard to create a solution to the take home test, but if I were really going to release this to the
 public, there's quite a lot of improvements I would make.
 
